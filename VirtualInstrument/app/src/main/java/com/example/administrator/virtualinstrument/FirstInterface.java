@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -21,107 +24,75 @@ import org.opencv.android.LoaderCallbackInterface;
 import java.util.concurrent.TimeUnit;
 
 public class FirstInterface extends AppCompatActivity {
-    private ImageView p1,p2,p3,p4,p5,redbtn,purplebtn,bluebtn;
-    private int screenWidth,sceenHeight;
-
+    private int color;//purple0,blue1,red2
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.first_interface);
-        getMetric();
-        initFirstInterface();
     }
-    private void initFirstInterface(){
-        p1= (ImageView) findViewById(R.id.p1View);
-        p2= (ImageView) findViewById(R.id.p2View);
-        p3= (ImageView) findViewById(R.id.p3View);
-        p4= (ImageView) findViewById(R.id.p4View);
-        p5= (ImageView) findViewById(R.id.p5View);
-        redbtn= (ImageView) findViewById(R.id.redBtn);
-        purplebtn= (ImageView) findViewById(R.id.purpleBtn);
-        bluebtn= (ImageView) findViewById(R.id.blueBtn);
-        p1.setX((screenWidth * 3) / 11);
-        p2.setX((screenWidth * 4) / 11);
-        p3.setX((screenWidth * 5) / 11);
-        p4.setX((screenWidth * 6) / 11);
-        p5.setX((screenWidth * 7) / 11);
-        p1.setY((sceenHeight / 5) * 2);
-        p2.setY((sceenHeight / 5) * 2);
-        p3.setY((sceenHeight / 5) * 2);
-        p4.setY((sceenHeight / 5) * 2);
-        p5.setY((sceenHeight / 5) * 2);
-        p1.setVisibility(View.INVISIBLE);
-        p2.setVisibility(View.INVISIBLE);
-        p3.setVisibility(View.INVISIBLE);
-        p4.setVisibility(View.INVISIBLE);
-        p5.setVisibility(View.INVISIBLE);
-        redbtn.setVisibility(View.INVISIBLE);
-        bluebtn.setVisibility(View.INVISIBLE);
-        purplebtn.setVisibility(View.INVISIBLE);
-        setAnimation();
-        redbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                color=2;
-//                DetectionBasedTracker.ChangeColor(color);
-                Intent intent1 = new Intent();
-                intent1.setClass(FirstInterface.this, ChoiceInterface.class);
-                intent1.putExtra("color",2);
-                FirstInterface.this.startActivity(intent1);
-                FirstInterface.this.finish();
-            }
-        });
-        purplebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                color=0;
-//                DetectionBasedTracker.ChangeColor(color);
-                Intent intent1 = new Intent();
-                intent1.setClass(FirstInterface.this, ChoiceInterface.class);
-                intent1.putExtra("color",0);
-                FirstInterface.this.startActivity(intent1);
-                FirstInterface.this.finish();
-            }
-        });
-        bluebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                color=1;
-//                DetectionBasedTracker.ChangeColor(color);
-                Intent intent1 = new Intent();
-                intent1.setClass(FirstInterface.this, ChoiceInterface.class);
-                intent1.putExtra("color",1);
-                FirstInterface.this.startActivity(intent1);
-                FirstInterface.this.finish();
-            }
-        });
-    }
-    private void setAnimation(){
-        Animation alphaAnimation=new AlphaAnimation(0.0f,1.0f);
-        alphaAnimation.setDuration(1000);
-        p1.startAnimation(alphaAnimation);
-        p2.startAnimation(alphaAnimation);
-        p3.startAnimation(alphaAnimation);
-        p4.startAnimation(alphaAnimation);
-        p5.startAnimation(alphaAnimation);
-        redbtn.startAnimation(alphaAnimation);
-        purplebtn.startAnimation(alphaAnimation);
-        bluebtn.startAnimation(alphaAnimation);
 
-        p1.setVisibility(View.VISIBLE);
-        p2.setVisibility(View.VISIBLE);
-        p3.setVisibility(View.VISIBLE);
-        p4.setVisibility(View.VISIBLE);
-        p5.setVisibility(View.VISIBLE);
-        redbtn.setVisibility(View.VISIBLE);
-        bluebtn.setVisibility(View.VISIBLE);
-        purplebtn.setVisibility(View.VISIBLE);
+    private void chooseColor(float x,float y){
+        Intent intent1=new Intent();
+        intent1.setClass(FirstInterface.this, SwitchInterface.class);
+        Bundle bundle=new Bundle();
+        //choose purple
+        if(y+x>1634&&y+x<1921&&y-x>1291&&y-x<1574){
+            color=0;
+            bundle.putInt("color",color);
+            intent1.putExtras(bundle);
+            FirstInterface.this.startActivity(intent1);
+            FirstInterface.this.finish();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        }
+        //choose blue
+        else if(y+x>1960&&y+x<2238&&y-x>1294&&y-x<1577){
+            color= 1;
+            bundle.putInt("color",color);
+            intent1.putExtras(bundle);
+            FirstInterface.this.startActivity(intent1);
+            FirstInterface.this.finish();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        }
+        //choose red
+        else if(y+x>1955&&y+x<2246&&y-x>962&&y-x<1253){
+            color= 2;
+            bundle.putInt("color",color);
+            intent1.putExtras(bundle);
+            FirstInterface.this.startActivity(intent1);
+            FirstInterface.this.finish();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        }
     }
-    private void getMetric(){
-        DisplayMetrics displayMetrics=new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        sceenHeight=displayMetrics.heightPixels;
-        screenWidth=displayMetrics.widthPixels;
-        Log.i("height",sceenHeight+"");
-        Log.i("width",screenWidth+"");
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction()==MotionEvent.ACTION_DOWN){
+            float x=event.getX();
+            float y=event.getY();
+            chooseColor(x,y);
+        }
+        else if(event.getAction()==MotionEvent.ACTION_UP)
+        {
+
+//            Intent intent1=new Intent();
+//            intent1.setClass(FirstInterface.this, SwitchInterface.class);
+//            Bundle bundle=new Bundle();
+//            bundle.putInt("color",color);
+//            intent1.putExtras(bundle);
+//            FirstInterface.this.startActivity(intent1);
+//            FirstInterface.this.finish();
+        }
+        else if(event.getAction()== MotionEvent.ACTION_MOVE){
+
+        }
+//        synchronized(this){
+//            try{
+//                this.wait(100);     //让事件线程休眠 减少触发次数
+//            }catch(InterruptedException e){
+//                e.printStackTrace();
+//            }
+//        }
+        return true;
     }
 }

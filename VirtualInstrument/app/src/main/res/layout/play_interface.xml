@@ -17,9 +17,80 @@
     </RelativeLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="1920px"
+        android:layout_height="1080px"
         android:id="@+id/instrument"/>
+
+    <AbsoluteLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_x="124px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/doo"
+            android:src="@drawable/doo"/>
+
+        <ImageView
+            android:layout_x="342px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/d"
+            android:src="@drawable/d"/>
+
+        <ImageView
+            android:layout_x="548px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/e"
+            android:src="@drawable/e"/>
+
+        <ImageView
+            android:layout_x="756px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/f"
+            android:src="@drawable/f"/>
+
+        <ImageView
+            android:layout_x="962px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/g"
+            android:src="@drawable/g"/>
+
+        <ImageView
+            android:layout_x="1168px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/a"
+            android:src="@drawable/a"/>
+
+        <ImageView
+            android:layout_x="1374px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/b"
+            android:src="@drawable/b"/>
+
+        <ImageView
+            android:layout_x="1578px"
+            android:layout_y="181px"
+            android:layout_width="222px"
+            android:layout_height="895px"
+            android:id="@+id/c"
+            android:src="@drawable/c"/>
+    </AbsoluteLayout>
     <!--
     应该是每个琴键单独一张图，响声音时单独一张图，轻音重音都单独一张图
     -->
