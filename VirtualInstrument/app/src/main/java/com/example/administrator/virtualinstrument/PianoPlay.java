@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -37,7 +38,7 @@ import java.util.HashMap;
 public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private CameraBridgeViewBase mOpenCvCameraView;
     protected static final String TAG="PianoPlay";
-    private ImageView iv;
+    private ImageView iv,iva,ivb,ivc,ivd,ive,ivf,ivg,ivdoo;
 
     private Mat                    mRgba;
     private Mat                    mGray;
@@ -73,9 +74,9 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.play_interface);
-        changeToBitmap();
-        iv = (ImageView) findViewById(R.id.instrument);
+
         mOpenCvCameraView=(CameraBridgeViewBase)findViewById(R.id.view);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
@@ -87,7 +88,6 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         BeforePlay();//为了播放音乐之前的准备
         Piano=new PianoAcceleration(KEY,25,12,70);
     }
-
     @Override
     public void onCameraViewStarted(int width, int height) {
         mGray=new Mat();
@@ -164,9 +164,28 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         }
         return mRgba;
     }
+
     private void initPlay(){
         Log.i(TAG, "playing piano");
-        iv.setImageResource(R.drawable.piano);
+        changeToBitmap();
+        iv = (ImageView) findViewById(R.id.instrument);
+        iva=(ImageView) findViewById(R.id.a);
+        ivb=(ImageView) findViewById(R.id.b);
+        ivc=(ImageView) findViewById(R.id.c);
+        ivd=(ImageView) findViewById(R.id.d);
+        ive=(ImageView) findViewById(R.id.e);
+        ivf=(ImageView) findViewById(R.id.f);
+        ivg=(ImageView) findViewById(R.id.g);
+        ivdoo=(ImageView) findViewById(R.id.doo);
+        iv.setImageResource(R.drawable.xylplay);
+        iva.setVisibility(View.INVISIBLE);
+        ivb.setVisibility(View.INVISIBLE);
+        ivc.setVisibility(View.INVISIBLE);
+        ivd.setVisibility(View.INVISIBLE);
+        ive.setVisibility(View.INVISIBLE);
+        ivf.setVisibility(View.INVISIBLE);
+        ivg.setVisibility(View.INVISIBLE);
+        ivdoo.setVisibility(View.INVISIBLE);
     }
     public boolean onKeyDown(int keyCode,KeyEvent event){
         if(keyCode==KeyEvent.KEYCODE_BACK){
@@ -186,15 +205,15 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         return BitmapFactory.decodeStream(is, null, opt);
     }
     protected void changeToBitmap(){
-        bitmap=readBitmap(this,R.drawable.piano);
-        bitmap1=readBitmap(this,R.drawable.piano1);
-        bitmap2=readBitmap(this,R.drawable.piano2);
-        bitmap3=readBitmap(this,R.drawable.piano3);
-        bitmap4=readBitmap(this,R.drawable.piano4);
-        bitmap5=readBitmap(this,R.drawable.piano5);
-        bitmap6=readBitmap(this,R.drawable.piano6);
-        bitmap7=readBitmap(this,R.drawable.piano7);
-        bitmap8=readBitmap(this,R.drawable.piano8);
+        bitmap=readBitmap(this,R.drawable.xylplay);
+        bitmap1=readBitmap(this,R.drawable.c);
+        bitmap2=readBitmap(this,R.drawable.b);
+        bitmap3=readBitmap(this,R.drawable.a);
+        bitmap4=readBitmap(this,R.drawable.g);
+        bitmap5=readBitmap(this,R.drawable.f);
+        bitmap6=readBitmap(this,R.drawable.e);
+        bitmap7=readBitmap(this,R.drawable.d);
+        bitmap8=readBitmap(this,R.drawable.doo);
     }
     protected Handler mHandler = new Handler() {
         @Override
@@ -202,31 +221,40 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
             if(msg.what>0&&msg.what<9) {
                 switch (msg.what) {
                     default:
+//                        iva.setVisibility(View.VISIBLE);
                         iv.setImageBitmap(bitmap);
                         break;
                     case 1:
-                        iv.setImageBitmap(bitmap1);
+                        iva.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap1);
                         break;
                     case 2:
-                        iv.setImageBitmap(bitmap2);
+                        ivb.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap2);
                         break;
                     case 3:
-                        iv.setImageBitmap(bitmap3);
+                        ivc.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap3);
                         break;
                     case 4:
-                        iv.setImageBitmap(bitmap4);
+                        ivd.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap4);
                         break;
                     case 5:
-                        iv.setImageBitmap(bitmap5);
+                        ive.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap5);
                         break;
                     case 6:
-                        iv.setImageBitmap(bitmap6);
+                        ivf.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap6);
                         break;
                     case 7:
-                        iv.setImageBitmap(bitmap7);
+                        ivg.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap7);
                         break;
                     case 8:
-                        iv.setImageBitmap(bitmap8);
+                        ivdoo.setVisibility(View.VISIBLE);
+//                        iv.setImageBitmap(bitmap8);
                         break;
                 }
             }

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg1">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pianobtn"
-        android:src="@drawable/pianobtn"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="69px"
+        android:layout_height="572px"
+        android:id="@+id/xyl"
+        android:layout_x="632px"
+        android:layout_y="252px"
+        android:src="@drawable/xylbtn"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/drumbtn"
-        android:src="@drawable/drumbtn"
-        android:layout_marginBottom="138dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        android:layout_width="68px"
+        android:layout_height="253px"
+        android:id="@+id/drum"
+        android:layout_x="405px"
+        android:layout_y="258px"
+        android:src="@drawable/drumbtn"/>
+
+    <ImageView
+        android:layout_width="69px"
+        android:layout_height="245px"
+        android:id="@+id/back"
+        android:layout_x="152px"
+        android:layout_y="258px"
+        android:src="@drawable/backbtn"
+        />
+</AbsoluteLayout>
