@@ -284,11 +284,13 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
 
     //volumnToPlay分7档音量
     public void playMusic(int tone,int volumnToPlay){
-        //volume = (volumnToPlay/streamVolumeMax);
         if(volumnToPlay==15){
             volume=1.0f;
-        }else{
+        }if(volumnToPlay == 8){
             volume=0.5f;
+        }
+        else{
+            volume=0.1f;
         }
         soundPool.play(soundPoolMap.get(tone), (float)volume, (float)volume, 2, 0, 1f);
         //play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate) ,
