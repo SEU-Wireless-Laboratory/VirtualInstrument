@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -146,33 +148,44 @@ public class ChoiceInterface extends AppCompatActivity implements View.OnClickLi
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            Intent intent1=new Intent();
-            intent1.setClass(ChoiceInterface.this, PianoPlay.class);
-            Intent intent2=new Intent();
-            intent2.setClass(ChoiceInterface.this, DrumPlay.class);
-            Bundle bundle=new Bundle();
-            switch (kind){
-                case 0:
+            Log.d("1", "onAnimationEnd: ");
+            Handler mHandler=new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent1=new Intent();
+                    intent1.setClass(ChoiceInterface.this, PianoPlay.class);
+                    Intent intent2=new Intent();
+                    intent2.setClass(ChoiceInterface.this, DrumPlay.class);
+                    Bundle bundle=new Bundle();
+
+                    switch (kind){
+                        case 0:
 //                    xylbtn.startAnimation(animationdown);
-                    bundle.putInt("kind",kind);
-                    bundle.putInt("color", color);
-                    intent1.putExtras(bundle);
-                    ChoiceInterface.this.startActivity(intent1);
-                    break;
-                case 1:
-                    bundle.putInt("kind",kind );
-                    bundle.putInt("color", color);
-                    intent2.putExtras(bundle);
-                    ChoiceInterface.this.startActivity(intent2);
-                    break;
-                case 2:
-                    Intent intent3=new Intent();
-                    intent3.setClass(ChoiceInterface.this, FirstInterface.class);
-                    ChoiceInterface.this.startActivity(intent3);
-                    break;
-            }
-            ChoiceInterface.this.finish();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            bundle.putInt("kind",kind);
+                            bundle.putInt("color", color);
+                            intent1.putExtras(bundle);
+                            ChoiceInterface.this.startActivity(intent1);
+                            break;
+                        case 1:
+                            bundle.putInt("kind",kind );
+                            bundle.putInt("color", color);
+                            intent2.putExtras(bundle);
+                            ChoiceInterface.this.startActivity(intent2);
+                            break;
+                        case 2:
+                            Intent intent3=new Intent();
+                            intent3.setClass(ChoiceInterface.this, FirstInterface.class);
+                            ChoiceInterface.this.startActivity(intent3);
+                            break;
+                    }
+                    ChoiceInterface.this.finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+
+
+        },100);
+
         }
 
         @Override

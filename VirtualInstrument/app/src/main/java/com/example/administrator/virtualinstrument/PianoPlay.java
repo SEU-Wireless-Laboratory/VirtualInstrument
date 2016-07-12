@@ -167,7 +167,7 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
 
     private void initPlay(){
         Log.i(TAG, "playing piano");
-        changeToBitmap();
+
         iv[0] = (ImageView) findViewById(R.id.instrument);
         iv[1]=(ImageView) findViewById(R.id.a);
         iv[2]=(ImageView) findViewById(R.id.b);
@@ -177,6 +177,7 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         iv[6]=(ImageView) findViewById(R.id.f);
         iv[7]=(ImageView) findViewById(R.id.g);
         iv[8]=(ImageView) findViewById(R.id.doo);
+        changeToBitmap();
         iv[0].setImageResource(R.drawable.xylplay);
         iv[1].setVisibility(View.INVISIBLE);
         iv[2].setVisibility(View.INVISIBLE);
@@ -214,6 +215,14 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         bitmap6=readBitmap(this,R.drawable.e);
         bitmap7=readBitmap(this,R.drawable.d);
         bitmap8=readBitmap(this, R.drawable.doo);
+        iv[1].setImageBitmap(bitmap3);
+        iv[2].setImageBitmap(bitmap2);
+        iv[3].setImageBitmap(bitmap1);
+        iv[4].setImageBitmap(bitmap7);
+        iv[5].setImageBitmap(bitmap6);
+        iv[6].setImageBitmap(bitmap5);
+        iv[7].setImageBitmap(bitmap4);
+        iv[8].setImageBitmap(bitmap8);
     }
     protected Handler mHandler = new Handler() {
         @Override

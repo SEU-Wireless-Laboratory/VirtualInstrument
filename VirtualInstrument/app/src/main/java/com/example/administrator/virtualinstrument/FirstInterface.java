@@ -2,6 +2,7 @@ package com.example.administrator.virtualinstrument;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,6 +64,10 @@ public class FirstInterface extends AppCompatActivity {
             FirstInterface.this.startActivity(intent1);
             FirstInterface.this.finish();
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        }
+        else if(x>72&&x<152&&y>52&&y<226){
+            ActivityManager activityMgr= (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+            activityMgr.killBackgroundProcesses(getPackageName());
         }
     }
     @Override
