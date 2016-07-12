@@ -36,12 +36,15 @@ public class PianoAcceleration {
             if(k<0){
                 k=k+5;
             }
-            if(y[i]-y[k]>highBorder){
+            if(y[i]-y[k]>40){
                 return 15;//大声
+            }
+            if(y[i]-y[k]>highBorder && y[i]-y[k]<40){
+                return 8;//正常
             }else if(y[i]-y[k]<lowBoder){
                 return -1;//没有声
             }else{
-                return 8;//小声
+                return 1;//小声
             }
         }
         private int[] y=new int[5];//用来存储系列坐标
@@ -49,14 +52,14 @@ public class PianoAcceleration {
     }
     public int[] setXY(int _x,int _y){
         //参数1若没有按键按下返回-1
-        //参数2若有声音则返回8或15，若无声音则返回0
+        //参数2若有声音则返回1或8或15，若无声音则返回0
         int[] temp=new int[2];
         for(int i=0;i<key.length;++i) {
             if (_x >= (key[i] + 3) && _x < (key[i + 1]) - 3) {
                 keys[i].InputY(_y);
                 if (_y > criticaLine) {
                     if ((temp[1] = keys[i].Calculate()) < 0) {
-                        //Calculate():返回-1没有声音，返回8是小声，返回15是大声
+                        //Calculate():返回-1没有声音，返回1是小声，返回8是正常，返回15是大声
                         //无声音
                         temp[0] = -1;
                         temp[1] = 0;

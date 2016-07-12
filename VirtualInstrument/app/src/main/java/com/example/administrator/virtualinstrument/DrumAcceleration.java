@@ -16,7 +16,7 @@ public class DrumAcceleration extends PianoAcceleration{
                 keys[i].InputY(_y);
                 if (_y > criticaLine) {
                     if ((temp[1] = keys[i].Calculate()) < 0) {
-                        //Calculate():返回-1没有声音，返回8是小声，返回15是大声
+                        //Calculate():返回-1没有声音，返回1是小声，返回8是正常，返回15是大声
                         //无声音
                         temp[0] = -1;
                         temp[1] = 0;

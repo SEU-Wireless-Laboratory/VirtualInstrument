@@ -216,11 +216,15 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
 
     //volumnToPlay分7档音量
     public void playMusic(int tone,int volumnToPlay){
-        volume = (volumnToPlay/streamVolumeMax);
-        soundPool.play(soundPoolMap.get(tone), (float)volume, (float)volume, 1, 0, 1f);
-        //play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate) ,
-        //参数：soundID：资源ID;leftVolume：左频道声音;rightVolume：右频道声音
-        //loop：-1代表循环，0代表不循环;rate：值0.5-2.0设置1为正常,表示播放快慢
+        if(volumnToPlay==15){
+            volume=1.0f;
+        }if(volumnToPlay == 8){
+            volume=0.5f;
+        }
+        else{
+            volume=0.1f;
+        }
+        soundPool.play(soundPoolMap.get(tone), (float)volume, (float)volume, 2, 0, 1f);
     }
     //混音器Demo结束
     ////////////////////////////////////////////////////////////////////////////
