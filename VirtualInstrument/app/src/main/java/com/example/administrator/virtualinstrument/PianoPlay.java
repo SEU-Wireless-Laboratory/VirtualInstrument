@@ -38,8 +38,8 @@ import java.util.HashMap;
 public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private CameraBridgeViewBase mOpenCvCameraView;
     protected static final String TAG="PianoPlay";
-    private ImageView iv,iva,ivb,ivc,ivd,ive,ivf,ivg,ivdoo;
-
+//    private ImageView iv,iva,ivb,ivc,ivd,ive,ivf,ivg,ivdoo;
+    private ImageView iv[]=new ImageView[9];
     private Mat                    mRgba;
     private Mat                    mGray;
 
@@ -167,25 +167,26 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
 
     private void initPlay(){
         Log.i(TAG, "playing piano");
+
+        iv[0] = (ImageView) findViewById(R.id.instrument);
+        iv[3]=(ImageView) findViewById(R.id.a);
+        iv[2]=(ImageView) findViewById(R.id.b);
+        iv[1]=(ImageView) findViewById(R.id.c);
+        iv[7]=(ImageView) findViewById(R.id.d);
+        iv[6]=(ImageView) findViewById(R.id.e);
+        iv[5]=(ImageView) findViewById(R.id.f);
+        iv[4]=(ImageView) findViewById(R.id.g);
+        iv[8]=(ImageView) findViewById(R.id.doo);
         changeToBitmap();
-        iv = (ImageView) findViewById(R.id.instrument);
-        iva=(ImageView) findViewById(R.id.a);
-        ivb=(ImageView) findViewById(R.id.b);
-        ivc=(ImageView) findViewById(R.id.c);
-        ivd=(ImageView) findViewById(R.id.d);
-        ive=(ImageView) findViewById(R.id.e);
-        ivf=(ImageView) findViewById(R.id.f);
-        ivg=(ImageView) findViewById(R.id.g);
-        ivdoo=(ImageView) findViewById(R.id.doo);
-        iv.setImageResource(R.drawable.xylplay);
-        iva.setVisibility(View.INVISIBLE);
-        ivb.setVisibility(View.INVISIBLE);
-        ivc.setVisibility(View.INVISIBLE);
-        ivd.setVisibility(View.INVISIBLE);
-        ive.setVisibility(View.INVISIBLE);
-        ivf.setVisibility(View.INVISIBLE);
-        ivg.setVisibility(View.INVISIBLE);
-        ivdoo.setVisibility(View.INVISIBLE);
+        iv[0].setImageResource(R.drawable.xylplay);
+        iv[1].setVisibility(View.INVISIBLE);
+        iv[2].setVisibility(View.INVISIBLE);
+        iv[3].setVisibility(View.INVISIBLE);
+        iv[4].setVisibility(View.INVISIBLE);
+        iv[5].setVisibility(View.INVISIBLE);
+        iv[6].setVisibility(View.INVISIBLE);
+        iv[7].setVisibility(View.INVISIBLE);
+        iv[8].setVisibility(View.INVISIBLE);
     }
     public boolean onKeyDown(int keyCode,KeyEvent event){
         if(keyCode==KeyEvent.KEYCODE_BACK){
@@ -213,59 +214,46 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         bitmap5=readBitmap(this,R.drawable.f);
         bitmap6=readBitmap(this,R.drawable.e);
         bitmap7=readBitmap(this,R.drawable.d);
-        bitmap8=readBitmap(this,R.drawable.doo);
+        bitmap8=readBitmap(this, R.drawable.doo);
+        iv[1].setImageBitmap(bitmap1);
+        iv[2].setImageBitmap(bitmap2);
+        iv[3].setImageBitmap(bitmap3);
+        iv[4].setImageBitmap(bitmap4);
+        iv[5].setImageBitmap(bitmap5);
+        iv[6].setImageBitmap(bitmap6);
+        iv[7].setImageBitmap(bitmap7);
+        iv[8].setImageBitmap(bitmap8);
     }
     protected Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            iv[msg.what].setVisibility(View.VISIBLE);
             if(msg.what>0&&msg.what<9) {
                 switch (msg.what) {
                     default:
 //                        iva.setVisibility(View.VISIBLE);
-                        iv.setImageBitmap(bitmap);
-                        break;
-                    case 1:
-                        iva.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap1);
-                        break;
-                    case 2:
-                        ivb.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap2);
-                        break;
-                    case 3:
-                        ivc.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap3);
-                        break;
-                    case 4:
-                        ivd.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap4);
-                        break;
-                    case 5:
-                        ive.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap5);
-                        break;
-                    case 6:
-                        ivf.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap6);
-                        break;
-                    case 7:
-                        ivg.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap7);
-                        break;
-                    case 8:
-                        ivdoo.setVisibility(View.VISIBLE);
-//                        iv.setImageBitmap(bitmap8);
+                        iv[0].setImageBitmap(bitmap);
+
                         break;
                 }
             }
         }
     };
 
-    private void playPiano(int key,int tone){
+    private void playPiano(final int key,int tone){
         Message msg=new Message();
         msg.what=8-key;
         playMusic(key, tone);
         mHandler.sendMessageAtFrontOfQueue(msg);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if((8-key)!=0) {
+                    iv[8-key].setVisibility(View.INVISIBLE);
+                }
+
+            }
+        },2000);
     }
 
     ////////////////////////////////////////////////////////////////////////////
