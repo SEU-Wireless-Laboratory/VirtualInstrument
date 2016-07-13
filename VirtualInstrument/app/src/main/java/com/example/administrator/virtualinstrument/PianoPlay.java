@@ -234,7 +234,6 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
                     default:
 //                        iva.setVisibility(View.VISIBLE);
                         iv[0].setImageBitmap(bitmap);
-
                         break;
                 }
             }
