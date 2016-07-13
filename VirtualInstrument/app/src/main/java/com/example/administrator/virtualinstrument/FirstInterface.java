@@ -83,24 +83,10 @@ public class FirstInterface extends AppCompatActivity {
         else if(event.getAction()==MotionEvent.ACTION_UP)
         {
 
-//            Intent intent1=new Intent();
-//            intent1.setClass(FirstInterface.this, SwitchInterface.class);
-//            Bundle bundle=new Bundle();
-//            bundle.putInt("color",color);
-//            intent1.putExtras(bundle);
-//            FirstInterface.this.startActivity(intent1);
-//            FirstInterface.this.finish();
         }
         else if(event.getAction()== MotionEvent.ACTION_MOVE){
 
         }
-//        synchronized(this){
-//            try{
-//                this.wait(100);     //让事件线程休眠 减少触发次数
-//            }catch(InterruptedException e){
-//                e.printStackTrace();
-//            }
-//        }
         return true;
     }
 }
