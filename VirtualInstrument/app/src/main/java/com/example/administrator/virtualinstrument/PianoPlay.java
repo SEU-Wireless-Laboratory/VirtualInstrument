@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -256,6 +257,32 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         },2000);
     }
 
+    //升八度或者降八度
+    private void chooseOct(float x,float y){
+        //升八度
+        if(y+x>1629&&y+x<1806&&y-x>-1411&&y-x<-1234){
+
+        }
+        //降八度
+        else if(y+x>1833&&y+x<2010&&y-x>-1615&&y-x<-1438){
+
+        }
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction()==MotionEvent.ACTION_DOWN){
+            float x=event.getX();
+            float y=event.getY();
+            chooseOct(x,y);
+        }
+        else if(event.getAction()==MotionEvent.ACTION_UP)
+        {
+        }
+        else if(event.getAction()== MotionEvent.ACTION_MOVE){
+
+        }
+        return true;
+    }
     ////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
