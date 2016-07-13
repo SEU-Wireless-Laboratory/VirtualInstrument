@@ -169,13 +169,13 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         Log.i(TAG, "playing piano");
 
         iv[0] = (ImageView) findViewById(R.id.instrument);
-        iv[1]=(ImageView) findViewById(R.id.a);
+        iv[3]=(ImageView) findViewById(R.id.a);
         iv[2]=(ImageView) findViewById(R.id.b);
-        iv[3]=(ImageView) findViewById(R.id.c);
-        iv[4]=(ImageView) findViewById(R.id.d);
-        iv[5]=(ImageView) findViewById(R.id.e);
-        iv[6]=(ImageView) findViewById(R.id.f);
-        iv[7]=(ImageView) findViewById(R.id.g);
+        iv[1]=(ImageView) findViewById(R.id.c);
+        iv[7]=(ImageView) findViewById(R.id.d);
+        iv[6]=(ImageView) findViewById(R.id.e);
+        iv[5]=(ImageView) findViewById(R.id.f);
+        iv[4]=(ImageView) findViewById(R.id.g);
         iv[8]=(ImageView) findViewById(R.id.doo);
         changeToBitmap();
         iv[0].setImageResource(R.drawable.xylplay);
@@ -215,13 +215,13 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         bitmap6=readBitmap(this,R.drawable.e);
         bitmap7=readBitmap(this,R.drawable.d);
         bitmap8=readBitmap(this, R.drawable.doo);
-        iv[1].setImageBitmap(bitmap3);
+        iv[1].setImageBitmap(bitmap1);
         iv[2].setImageBitmap(bitmap2);
-        iv[3].setImageBitmap(bitmap1);
-        iv[4].setImageBitmap(bitmap7);
-        iv[5].setImageBitmap(bitmap6);
-        iv[6].setImageBitmap(bitmap5);
-        iv[7].setImageBitmap(bitmap4);
+        iv[3].setImageBitmap(bitmap3);
+        iv[4].setImageBitmap(bitmap4);
+        iv[5].setImageBitmap(bitmap5);
+        iv[6].setImageBitmap(bitmap6);
+        iv[7].setImageBitmap(bitmap7);
         iv[8].setImageBitmap(bitmap8);
     }
     protected Handler mHandler = new Handler() {
@@ -235,38 +235,6 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
                         iv[0].setImageBitmap(bitmap);
 
                         break;
-//                    case 1:
-//                        iv[1].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap1);
-//                        break;
-//                    case 2:
-//                        iv[2].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap2);
-//                        break;
-//                    case 3:
-//                        iv[3].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap3);
-//                        break;
-//                    case 4:
-//                        iv[4].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap4);
-//                        break;
-//                    case 5:
-//                        iv[5].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap5);
-//                        break;
-//                    case 6:
-//                        iv[6].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap6);
-//                        break;
-//                    case 7:
-//                        iv[7].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap7);
-//                        break;
-//                    case 8:
-//                        iv[8].setVisibility(View.VISIBLE);
-////                        iv.setImageBitmap(bitmap8);
-//                        break;
                 }
             }
         }
