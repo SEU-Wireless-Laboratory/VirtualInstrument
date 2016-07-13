@@ -274,8 +274,8 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
             float y=event.getY();
             chooseOct(x,y);
         }
-        else if(event.getAction()==MotionEvent.ACTION_UP)
-        {
+        else if(event.getAction()==MotionEvent.ACTION_UP) {
+
         }
         else if(event.getAction()== MotionEvent.ACTION_MOVE){
 
@@ -291,7 +291,7 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     private HashMap<Integer, Integer> soundPoolMap;
     private AudioManager mgr;
 
-    private float streamVolumeMax, volume;
+    private float volume;
 
     //SuppressWarnings为了在编译API<=21的时候直接创建SoundPool时使用
     //这个函数要在播放音乐之前调用
@@ -321,7 +321,6 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         soundPoolMap.put(6,soundPool.load(this,R.raw.fa_2,1));
         soundPoolMap.put(7,soundPool.load(this,R.raw.sol_2,1));
         mgr = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
-        streamVolumeMax = mgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
     }
 
     //volumnToPlay分7档音量
