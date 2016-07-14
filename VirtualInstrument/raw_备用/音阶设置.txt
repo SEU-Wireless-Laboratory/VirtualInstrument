@@ -1,0 +1,32 @@
+C  D  E  F  G    A  B 是音名
+do re mi fa sol la si 是唱名
+
+低音音阶：
+fa_0
+sol_0
+la_0
+si_0
+dou_1
+re_1
+mi_1
+fa_1
+
+中音音阶：
+sol_1
+la_1
+si_1
+dou_2
+re_2
+mi_2
+fa_2
+sol_2
+
+高音音阶：
+la_2
+si_2
+dou_3
+re_3
+mi_3
+fa_3
+sol_3
+la_3
