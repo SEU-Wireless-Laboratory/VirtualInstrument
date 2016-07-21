@@ -58,7 +58,7 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
 
     private BaseLoaderCallback mLoaderCallback=new BaseLoaderCallback(this) {
         @Override
-        public void onManagerConnected(int status) {
+        public void onManagerConnected(int status) {//
             switch (status){
                 case LoaderCallbackInterface.SUCCESS:
                     Log.i(TAG, "opencv loaded successfully");
