@@ -258,10 +258,12 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         //升八度
         if(y+x>1629&&y+x<1806&&y-x>-1411&&y-x<-1234){
             changePitches(true);
+            Log.i("badu","+");
         }
         //降八度
         else if(y+x>1833&&y+x<2010&&y-x>-1615&&y-x<-1438){
             changePitches(false);
+            Log.i("badu","-");
         }
     }
     @Override

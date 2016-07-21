@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.opencv.android.JavaCameraView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/view2" />
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+
+        android:src="@drawable/drumbg"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum1" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum2" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum3" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum4" />
+        </TableRow>
+        <TableRow>
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="270px"
+                android:id="@+id/circle1" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="270px"
+                android:id="@+id/circle2" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="270px"
+                android:id="@+id/circle3" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="270px"
+                android:id="@+id/circle4" />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

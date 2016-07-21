@@ -1,10 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <org.opencv.android.JavaCameraView
+    <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/positionview" />
-</LinearLayout>
+        android:id="@+id/imageView2"
+        android:src="@drawable/drumbg"/>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum11" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum12" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum13" />
+
+            <ImageView
+                android:layout_width="480px"
+                android:layout_height="810px"
+                android:id="@+id/drum14" />
+        </TableRow>
+        <TableRow>
+            <RelativeLayout
+                android:layout_width="480px"
+                android:layout_height="270px">
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:id="@+id/circlebg1" />
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:src="@drawable/bass"
+                    android:id="@+id/circle11" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="480px"
+                android:layout_height="270px">
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:id="@+id/circlebg2" />
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:src="@drawable/ride"
+                    android:id="@+id/circle12" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="480px"
+                android:layout_height="270px">
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:id="@+id/circlebg3" />
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:src="@drawable/snare"
+                    android:id="@+id/circle13" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="480px"
+                android:layout_height="270px">
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:id="@+id/circlebg4" />
+
+                <ImageView
+                    android:layout_width="480px"
+                    android:layout_height="270px"
+                    android:src="@drawable/tom"
+                    android:id="@+id/circle14" />
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+        </TableRow>
+    </TableLayout>
+
+
+
+</RelativeLayout>
