@@ -13,12 +13,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -27,7 +29,6 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.InputStream;
@@ -39,10 +40,8 @@ import java.util.HashMap;
 public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private CameraBridgeViewBase mOpenCvCameraView;
     protected static final String TAG="PianoPlay";
-//    private ImageView iv,iva,ivb,ivc,ivd,ive,ivf,ivg,ivdoo;
     private ImageView iv[]=new ImageView[9];
     private Mat                    mRgba;
-    private Mat                    mGray;
 
     private Bitmap bitmap,bitmap1,bitmap2,bitmap3,bitmap4,bitmap5,bitmap6,bitmap7,bitmap8;
     protected int color;//用来记录用户选择的是哪一个颜色
@@ -50,7 +49,7 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     private PianoAcceleration Piano;
     protected static final int KEY[]={0,28,46,63,85,103,120,141,175};
     private boolean play = false ;
-    //private static final Scalar FINGER_RECT_COLOR     = new Scalar(0, 255, 0, 255);
+
 
     private BaseLoaderCallback mLoaderCallback=new BaseLoaderCallback(this) {
         @Override
@@ -91,14 +90,12 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     }
     @Override
     public void onCameraViewStarted(int width, int height) {
-        mGray=new Mat();
         mRgba=new Mat();
         initPlay();
     }
 
     @Override
     public void onCameraViewStopped() {
-        mGray.release();
         mRgba.release();
     }
 
@@ -234,7 +231,6 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
                     default:
 //                        iva.setVisibility(View.VISIBLE);
                         iv[0].setImageBitmap(bitmap);
-
                         break;
                 }
             }
@@ -261,10 +257,12 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     private void chooseOct(float x,float y){
         //升八度
         if(y+x>1629&&y+x<1806&&y-x>-1411&&y-x<-1234){
+            changePitches(true);
             Log.i("badu","+");
         }
         //降八度
         else if(y+x>1833&&y+x<2010&&y-x>-1615&&y-x<-1438){
+            changePitches(false);
             Log.i("badu","-");
         }
     }
@@ -275,8 +273,9 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
             float y=event.getY();
             chooseOct(x,y);
         }
-        else if(event.getAction()==MotionEvent.ACTION_UP)
-        {
+
+        else if(event.getAction()==MotionEvent.ACTION_UP) {
+
         }
         else if(event.getAction()== MotionEvent.ACTION_MOVE){
 
@@ -292,8 +291,71 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     private HashMap<Integer, Integer> soundPoolMap;
     private AudioManager mgr;
 
-    private float streamVolumeMax, volume;
+    private int pitches=-1;//用来表示八度，-1，0，1，三个调;
+    //这里之所以变成-1是为了初始化BeforePlay()函数方便调用
 
+    private float volume;
+
+    boolean changePitches(boolean high){
+        //high=true 就说明升一个八度；high=false就说明降一个八度
+        //如果升、降八度成功，就返回true；pitches已经是1的时候再升八度就会
+        Toast toast;
+        if(pitches == 1 && high == true){
+            toast=Toast.makeText(getApplicationContext(),"已到最高音，无法继续升调",Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+            return false;
+        }else if(pitches == -1 && high == false){
+            toast=Toast.makeText(getApplicationContext(),"已到最低音，无法继续降调",Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+            return false;
+        }
+        if(high){
+            pitches++;
+        }else{
+            pitches--;
+        }
+        toast=Toast.makeText(getApplicationContext(),"声音调节完成，请等待5s缓冲",Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+        //先清空原本的声音文件
+        // 不知道为什么，一旦调用就再也无法发出声音
+        //soundPool.release();
+        if(soundPoolMap == null){
+            soundPoolMap = new HashMap<Integer, Integer>();
+        }
+        soundPoolMap.clear();
+        if(pitches == 1){
+            soundPoolMap.put(0, soundPool.load(this, R.raw.la_2, 1));
+            soundPoolMap.put(1, soundPool.load(this, R.raw.si_2, 1));
+            soundPoolMap.put(2, soundPool.load(this, R.raw.dou_3, 1));
+            soundPoolMap.put(3,soundPool.load(this,R.raw.re_3,1));
+            soundPoolMap.put(4,soundPool.load(this,R.raw.mi_3,1));
+            soundPoolMap.put(5,soundPool.load(this,R.raw.fa_3,1));
+            soundPoolMap.put(6,soundPool.load(this,R.raw.sol_3,1));
+            soundPoolMap.put(7,soundPool.load(this,R.raw.la_3,1));
+        }else if(pitches == 0){
+            soundPoolMap.put(0, soundPool.load(this, R.raw.sol_1, 1));
+            soundPoolMap.put(1, soundPool.load(this, R.raw.la_1, 1));
+            soundPoolMap.put(2, soundPool.load(this, R.raw.si_1, 1));
+            soundPoolMap.put(3,soundPool.load(this,R.raw.dou_2,1));
+            soundPoolMap.put(4,soundPool.load(this,R.raw.re_2,1));
+            soundPoolMap.put(5,soundPool.load(this,R.raw.mi_2,1));
+            soundPoolMap.put(6,soundPool.load(this,R.raw.fa_2,1));
+            soundPoolMap.put(7,soundPool.load(this,R.raw.sol_2,1));
+        }else if(pitches == -1){
+            soundPoolMap.put(0, soundPool.load(this, R.raw.fa_0, 1));
+            soundPoolMap.put(1, soundPool.load(this, R.raw.sol_0, 1));
+            soundPoolMap.put(2, soundPool.load(this, R.raw.la_0, 1));
+            soundPoolMap.put(3,soundPool.load(this,R.raw.si_1,1));
+            soundPoolMap.put(4,soundPool.load(this,R.raw.dou_1,1));
+            soundPoolMap.put(5,soundPool.load(this,R.raw.re_1,1));
+            soundPoolMap.put(6,soundPool.load(this,R.raw.mi_1,1));
+            soundPoolMap.put(7,soundPool.load(this,R.raw.fa_1,1));
+        }
+        return true;
+    }
     //SuppressWarnings为了在编译API<=21的时候直接创建SoundPool时使用
     //这个函数要在播放音乐之前调用
     //所以选择在oncreate中调用一次，现在已经加进去了
@@ -307,22 +369,14 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
                     .build();
             soundPool = new SoundPool.Builder()
                     .setAudioAttributes(attributes)
-                    .setMaxStreams(10)
+                    .setMaxStreams(3)
                     .build();
         }else{
-            soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC,50);
+            soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC,50);
         }
-        soundPoolMap = new HashMap<Integer, Integer>();
-        soundPoolMap.put(0, soundPool.load(this, R.raw.sol, 1));
-        soundPoolMap.put(1, soundPool.load(this, R.raw.la, 1));
-        soundPoolMap.put(2, soundPool.load(this, R.raw.si, 1));
-        soundPoolMap.put(3,soundPool.load(this,R.raw.dou_2,1));
-        soundPoolMap.put(4,soundPool.load(this,R.raw.re_2,1));
-        soundPoolMap.put(5,soundPool.load(this,R.raw.mi_2,1));
-        soundPoolMap.put(6,soundPool.load(this,R.raw.fa_2,1));
-        soundPoolMap.put(7,soundPool.load(this,R.raw.sol_2,1));
+        //pitches初始化为-1
+        changePitches(true);//初始化音乐为中音
         mgr = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
-        streamVolumeMax = mgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
     }
 
     //volumnToPlay分7档音量
