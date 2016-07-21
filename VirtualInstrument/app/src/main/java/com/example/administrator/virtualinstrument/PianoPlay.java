@@ -261,11 +261,11 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     private void chooseOct(float x,float y){
         //升八度
         if(y+x>1629&&y+x<1806&&y-x>-1411&&y-x<-1234){
-
+            Log.i("badu","+");
         }
         //降八度
         else if(y+x>1833&&y+x<2010&&y-x>-1615&&y-x<-1438){
-
+            Log.i("badu","-");
         }
     }
     @Override

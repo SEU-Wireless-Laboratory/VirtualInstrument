@@ -32,73 +32,14 @@ public class ChoiceInterface extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Intent intent=getIntent();
-        color=intent.getIntExtra("color",0);
+        Intent intent = getIntent();
+        color = intent.getIntExtra("color", 0);
         loadImage(color);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.choice_interface);
         initChoiceInterface();
-//        iv= (ImageView) findViewById(R.id.imageView2);
-//        Intent intent=getIntent();
-//        color=intent.getIntExtra("color",0);
-//        loadImage(color);
     }
-//    private void chooseInstru(float x,float y){
-//        //piano kind=0,drum=1
-//        Intent intent1=new Intent();
-//        intent1.setClass(ChoiceInterface.this, PianoPlay.class);
-//        Intent intent2=new Intent();
-//        intent2.setClass(ChoiceInterface.this, DrumPlay.class);
-//        Bundle bundle=new Bundle();
-//        //choose xylophone
-//        if(x>632&&x<700&&y>252&&y<826){
-//            bundle.putInt("kind",0);
-//            bundle.putInt("color",color);
-//            intent1.putExtras(bundle);
-//            ChoiceInterface.this.startActivity(intent1);
-//            ChoiceInterface.this.finish();
-//        }
-//        //choose drum
-//        else if(x>405&&x<472&&y>258&&y<510){
-//            bundle.putInt("kind",1 );
-//            bundle.putInt("color",color);
-//            intent2.putExtras(bundle);
-//            ChoiceInterface.this.startActivity(intent2);
-//            ChoiceInterface.this.finish();
-//
-//        }
-//        //choose back
-//        else if(x>152&&x<222&&y>258&&y<506){
-//            Intent intent3=new Intent();
-//            intent3.setClass(ChoiceInterface.this, FirstInterface.class);
-//            ChoiceInterface.this.startActivity(intent3);
-//            ChoiceInterface.this.finish();
-//        }
-//    }
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        if(event.getAction()==MotionEvent.ACTION_DOWN){
-//            float x=event.getX();
-//            float y=event.getY();
-//            chooseInstru(x, y);
-//        }
-//        else if(event.getAction()==MotionEvent.ACTION_UP)
-//        {
-//
-////            Intent intent1=new Intent();
-////            intent1.setClass(FirstInterface.this, SwitchInterface.class);
-////            Bundle bundle=new Bundle();
-////            bundle.putInt("color",color);
-////            intent1.putExtras(bundle);
-////            FirstInterface.this.startActivity(intent1);
-////            FirstInterface.this.finish();
-//        }
-//        else if(event.getAction()== MotionEvent.ACTION_MOVE){
-//
-//        }
-//        return true;
-//    }
     private void loadImage(int color){
         switch (color){
             case 0:
@@ -117,13 +58,7 @@ public class ChoiceInterface extends AppCompatActivity implements View.OnClickLi
 
 //        iv.setImageBitmap(bitmap);
     }
-//    public Bitmap readBitmap(Context context, int resId){
-//        BitmapFactory.Options opt = new BitmapFactory.Options();
-//        opt.inPreferredConfig = Bitmap.Config.RGB_565;
-//        // 获取资源图片
-//        InputStream is = context.getResources().openRawResource(resId);
-//        return BitmapFactory.decodeStream(is, null, opt);
-//    }
+
     private void initChoiceInterface(){
         xylbtn= (ImageView) findViewById(R.id.xyl);
         backbtn= (ImageView) findViewById(R.id.back);
@@ -156,7 +91,7 @@ public class ChoiceInterface extends AppCompatActivity implements View.OnClickLi
                     Intent intent1=new Intent();
                     intent1.setClass(ChoiceInterface.this, PianoPlay.class);
                     Intent intent2=new Intent();
-                    intent2.setClass(ChoiceInterface.this, DrumPlay.class);
+                    intent2.setClass(ChoiceInterface.this, PositionSet.class);
                     Bundle bundle=new Bundle();
 
                     switch (kind){
@@ -194,6 +129,16 @@ public class ChoiceInterface extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    public boolean onKeyDown(int keyCode,KeyEvent event){
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            Intent intent1=new Intent();
+            intent1.setClass(ChoiceInterface.this, FirstInterface.class);
+            ChoiceInterface.this.startActivity(intent1);
+            ChoiceInterface.this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
     @Override
     public void onClick(View view) {
 //        Intent intent1=new Intent();

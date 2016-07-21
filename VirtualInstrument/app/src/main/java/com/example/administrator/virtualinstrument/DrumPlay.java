@@ -3,13 +3,19 @@ package com.example.administrator.virtualinstrument;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -24,6 +30,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.InputStream;
 import java.util.HashMap;
 
 /**
@@ -32,7 +39,11 @@ import java.util.HashMap;
 public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private CameraBridgeViewBase mOpenCvCameraView;
     protected static final String TAG="DrumPlay";
-    private ImageView iv;
+    private ImageView drum[]=new ImageView[4];
+    private ImageView circle[]=new ImageView[4];
+    private Bitmap drumBitmap[]=new Bitmap[4];
+    private Bitmap circleBitmap[]=new Bitmap[4];
+//    private PositionSet positionSet=new PositionSet(0,0);
     private Mat mRgba;
     private Mat                    mGray;
     protected int color;//用来记录用户选择的是哪一个颜色
@@ -40,7 +51,7 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
     private PianoAcceleration Piano;
     private boolean play = false ;
     private static final Scalar FINGER_RECT_COLOR     = new Scalar(0, 255, 0, 255);
-
+    private int drumPos[]=new int[4];
     //因为鼓的位置有自定义，所以这里只是创建了变量
     private static int DRUMKEY[]={0,44,74,118,148,192};
     private DrumAcceleration Drum;
@@ -70,9 +81,11 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.play_interface);
-        iv = (ImageView) findViewById(R.id.instrument);
-        mOpenCvCameraView=(CameraBridgeViewBase)findViewById(R.id.view);
+        setContentView(R.layout.drum_play_interface);
+//        iv = (ImageView) findViewById(R.id.instrument);
+        initPlay();
+
+        mOpenCvCameraView=(CameraBridgeViewBase)findViewById(R.id.view2);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);
@@ -81,6 +94,10 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
         color=bundle.getInt("color",0);
+        drumPos[0]=bundle.getInt("drum0");
+        drumPos[1]=bundle.getInt("drum1");
+        drumPos[2]=bundle.getInt("drum2");
+        drumPos[3]=bundle.getInt("drum3");
         BeforePlay();//为了播放音乐之前的准备
         Drum=new DrumAcceleration(DRUMKEY,25,12,70);
 
@@ -92,9 +109,47 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
         mRgba=new Mat();
         initPlay();
     }
+    public Bitmap readBitmap(Context context, int resId){
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inPreferredConfig = Bitmap.Config.RGB_565;
+        // 获取资源图片
+        InputStream is = context.getResources().openRawResource(resId);
+        return BitmapFactory.decodeStream(is, null, opt);
+    }
+    protected void changeToBitmap(){
+        drumBitmap[0]=readBitmap(this,R.drawable.bassr);
+        drumBitmap[1]=readBitmap(this,R.drawable.ridey);
+        drumBitmap[2]=readBitmap(this,R.drawable.snareb);
+        drumBitmap[3]=readBitmap(this,R.drawable.tomp);
+        circleBitmap[0]=readBitmap(this,R.drawable.bass);
+        circleBitmap[1]=readBitmap(this,R.drawable.ride);
+        circleBitmap[2]=readBitmap(this,R.drawable.snare);
+        circleBitmap[3]=readBitmap(this,R.drawable.tom);
+    }
     private void initPlay(){
-        Log.i(TAG, "playing drum");
+//        Log.i(TAG, "playing drum");
         //iv.setImageResource(R.drawable.drum);
+        changeToBitmap();
+        drum[0]= (ImageView) findViewById(R.id.drum1);
+        drum[1]= (ImageView) findViewById(R.id.drum2);
+        drum[2]= (ImageView) findViewById(R.id.drum3);
+        drum[3]= (ImageView) findViewById(R.id.drum4);
+        circle[0]=(ImageView) findViewById(R.id.circle1);
+        circle[1]=(ImageView) findViewById(R.id.circle2);
+        circle[2]=(ImageView) findViewById(R.id.circle3);
+        circle[3]=(ImageView) findViewById(R.id.circle4);
+        circle[drumPos[0]].setImageBitmap(circleBitmap[0]);
+        circle[drumPos[1]].setImageBitmap(circleBitmap[1]);
+        circle[drumPos[2]].setImageBitmap(circleBitmap[2]);
+        circle[drumPos[3]].setImageBitmap(circleBitmap[3]);
+        drum[drumPos[0]].setImageBitmap(drumBitmap[0]);
+        drum[drumPos[1]].setImageBitmap(drumBitmap[1]);
+        drum[drumPos[2]].setImageBitmap(drumBitmap[2]);
+        drum[drumPos[3]].setImageBitmap(drumBitmap[3]);
+        drum[0].setVisibility(View.INVISIBLE);
+        drum[1].setVisibility(View.INVISIBLE);
+        drum[2].setVisibility(View.INVISIBLE);
+        drum[3].setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -149,7 +204,7 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
             else{
                 play=true;
             }
-            if (play) playDrum(temp[0],temp[1]);
+            if (play) playDrum(temp[0],temp[1],temp[0]);
         }
         return mRgba;
     }
@@ -163,9 +218,41 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
         ////////////////////////////////////////
         mOpenCvCameraView.disableView();
     }
-    private void playDrum(int key,int tone){
+    protected Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what<4)
+                drum[msg.what].setVisibility(View.VISIBLE);
+//                drum[msg.what].setImageBitmap(drumBitmap[msg.what]);
+//            if(msg.what>0&&msg.what<9) {
+//                switch (msg.what) {
+//                    default:
+////                        iva.setVisibility(View.VISIBLE);
+//                        iv[0].setImageBitmap(bitmap);
+//
+//                        break;
+//                }
+//            }
+        }
+    };
+    private void playDrum(int key,int tone,final int key0){
+        final Message msg=new Message();
+        msg.what=key;
         key=key+8;
         playMusic(key,tone);
+
+        mHandler.sendMessageAtFrontOfQueue(msg);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if ((key0)<4) {
+                    Log.i("drum",key0+"");
+//                    drum[key0].setImageBitmap(drumBitmap[0]);
+                    drum[key0].setVisibility(View.INVISIBLE);
+                }
+
+            }
+        }, 2000);
     }
     public boolean onKeyDown(int keyCode,KeyEvent event){
         if(keyCode==KeyEvent.KEYCODE_BACK){

@@ -81,6 +81,7 @@
             android:layout_y="181px"
             android:layout_width="222px"
             android:layout_height="895px"
+
             android:id="@+id/c"/>
     </AbsoluteLayout>
     <!--
