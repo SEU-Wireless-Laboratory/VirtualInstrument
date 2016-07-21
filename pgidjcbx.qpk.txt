@@ -1,0 +1,148 @@
+﻿Merge remote-tracking branch 'refs/remotes/origin/master' into DRUMui
+
+# Conflicts:
+#	VirtualInstrument/app/src/main/java/com/example/administrator/virtualinstrument/PianoPlay.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch DRUMui
+# Your branch and 'origin/DRUMui' have diverged,
+# and have 1 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   VirtualInstrument/app/src/main/java/com/example/administrator/virtualinstrument/DrumPlay.java
+#	modified:   VirtualInstrument/app/src/main/java/com/example/administrator/virtualinstrument/PianoPlay.java
+#	deleted:    VirtualInstrument/app/src/main/res/raw/doo.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/dou_1.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/dou_3.mp3
+#	deleted:    VirtualInstrument/app/src/main/res/raw/fa.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/fa_0.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/fa_1.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/fa_3.mp3
+#	deleted:    VirtualInstrument/app/src/main/res/raw/la.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/la_0.mp3
+#	renamed:    "VirtualInstrument/raw_\345\244\207\347\224\250/la.mp3" -> VirtualInstrument/app/src/main/res/raw/la_1.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/la_2.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/la_3.mp3
+#	deleted:    VirtualInstrument/app/src/main/res/raw/mi.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/mi_1.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/mi_3.mp3
+#	deleted:    VirtualInstrument/app/src/main/res/raw/re.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/re_1.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/re_3.mp3
+#	deleted:    VirtualInstrument/app/src/main/res/raw/si.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/si_0.mp3
+#	renamed:    "VirtualInstrument/raw_\345\244\207\347\224\250/si.mp3" -> VirtualInstrument/app/src/main/res/raw/si_1.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/si_2.mp3
+#	deleted:    VirtualInstrument/app/src/main/res/raw/sol.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/sol_0.mp3
+#	renamed:    "VirtualInstrument/raw_\345\244\207\347\224\250/sol.mp3" -> VirtualInstrument/app/src/main/res/raw/sol_1.mp3
+#	new file:   VirtualInstrument/app/src/main/res/raw/sol_3.mp3
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a0.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a0m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a1.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a1m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a2m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a3.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a3m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a4.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a4m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a5.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a5m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a6.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a6m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a7.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/a7m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b0.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b1.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b3.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b4.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b5.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b6.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/b7.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c1.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c1m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c2m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c3.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c3m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c4.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c4m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c5.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c5m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c6.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c6m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c7.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c7m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/c8.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d1.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d1m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d2m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d3.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d3m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d4.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d4m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d5.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d5m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d6.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d6m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d7.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/d7m.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/dou_2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/e1.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/e2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/e3.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/e4.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/e5.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/e6.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/e7.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f1.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f1m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f2m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f3.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f3m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f4.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f4m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f5.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f5m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f6.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f6m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f7.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/f7m.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/fa_2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g1.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g1m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g2.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g2m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g3.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g3m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g4.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g4m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g5.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g5m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g6.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g6m.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g7.mp3"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/g7m.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/la_2_x.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/mi_2.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/re_2.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/si_2_x.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/sol_2.mp3"
+#	deleted:    "VirtualInstrument/raw_\345\244\207\347\224\250/\351\237\263\351\230\266.txt"
+#	new file:   "VirtualInstrument/raw_\345\244\207\347\224\250/\351\237\263\351\230\266\350\256\276\347\275\256.txt"
+#
+

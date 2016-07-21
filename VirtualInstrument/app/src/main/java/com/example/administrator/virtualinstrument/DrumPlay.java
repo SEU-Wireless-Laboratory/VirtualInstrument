@@ -273,7 +273,7 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
     private HashMap<Integer, Integer> soundPoolMap;
     private AudioManager mgr;
 
-    private float streamVolumeMax, volume;
+    private float volume;
 
     //SuppressWarnings为了在编译API<=21的时候直接创建SoundPool时使用
     //这个函数要在播放音乐之前调用
@@ -300,7 +300,6 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
         soundPoolMap.put(11, soundPool.load(this, R.raw.cymbal, 1));
         soundPoolMap.put(12, soundPool.load(this, R.raw.drum2, 1));
         mgr = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
-        streamVolumeMax = mgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);//15
     }
 
     //volumnToPlay分7档音量
