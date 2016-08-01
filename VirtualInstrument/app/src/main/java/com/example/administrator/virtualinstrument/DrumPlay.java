@@ -202,8 +202,7 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
             }
             if (play){
                 //因为有一个对应关系，所以这里的temp要处理一个映射
-                temp[0]=drumPos[temp[0]];
-                playDrum(temp[0],temp[1],temp[0]);
+                playDrum(temp[0] ,temp[1],drumPos[temp[0]]);
             }
         }
         return mRgba;
@@ -235,20 +234,19 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
 //            }
         }
     };
-    private void playDrum(int key,int tone,final int key0){
+    private void playDrum(final int keyForPicture,int tone,final int keyForMusic){
         final Message msg=new Message();
-        msg.what=key;
-        key=key+8;
-        playMusic(key,tone);
+        msg.what=keyForPicture;
+        playMusic(keyForMusic+8,tone);//+8是因为放入SoundPool的时候是从8开始的
 
         mHandler.sendMessageAtFrontOfQueue(msg);
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if ((key0)<4) {
-                    Log.i("drum",key0+"");
+                if ((keyForPicture)<4) {
+                    Log.i("drum",keyForPicture+"");
 //                    drum[key0].setImageBitmap(drumBitmap[0]);
-                    drum[key0].setVisibility(View.INVISIBLE);
+                    drum[keyForPicture].setVisibility(View.INVISIBLE);
                 }
 
             }
@@ -297,8 +295,7 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
         soundPoolMap.put(8, soundPool.load(this, R.raw.cymbal, 1));
         soundPoolMap.put(9, soundPool.load(this, R.raw.drumside, 1));
         soundPoolMap.put(10, soundPool.load(this, R.raw.drum, 1));
-        soundPoolMap.put(11, soundPool.load(this, R.raw.cymbal, 1));
-        soundPoolMap.put(12, soundPool.load(this, R.raw.drum2, 1));
+        soundPoolMap.put(11, soundPool.load(this,  R.raw.drum2, 1));
         mgr = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
     }
 
