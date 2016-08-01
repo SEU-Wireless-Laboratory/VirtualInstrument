@@ -250,7 +250,7 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
                 }
 
             }
-        },2000);
+        },1500);
     }
 
     //升八度或者降八度
@@ -369,10 +369,10 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
                     .build();
             soundPool = new SoundPool.Builder()
                     .setAudioAttributes(attributes)
-                    .setMaxStreams(3)
+                    .setMaxStreams(5)
                     .build();
         }else{
-            soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC,50);
+            soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,50);
         }
         //pitches初始化为-1
         changePitches(true);//初始化音乐为中音

@@ -8,7 +8,7 @@ public class DrumAcceleration extends PianoAcceleration{
         super(boundary, highBorder, lowBoder, criticaLine);
     }
     public int[] setXY(int _x,int _y){
-        //参数1若没有按键按下返回-1
+        //参数1若没有按键按下返回-1,有按键就会返回相应的index，从0开始
         //参数2若有声音则返回8或15，若无声音则返回0
         int[] temp=new int[2];
         for(int i=0;i<key.length;++i) {

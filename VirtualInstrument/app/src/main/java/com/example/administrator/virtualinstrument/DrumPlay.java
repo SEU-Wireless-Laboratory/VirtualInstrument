@@ -45,7 +45,6 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
     private Bitmap circleBitmap[]=new Bitmap[4];
 //    private PositionSet positionSet=new PositionSet(0,0);
     private Mat mRgba;
-    private Mat                    mGray;
     protected int color;//用来记录用户选择的是哪一个颜色
     private Point fingerTip;
     private PianoAcceleration Piano;
@@ -53,7 +52,7 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
     private static final Scalar FINGER_RECT_COLOR     = new Scalar(0, 255, 0, 255);
     private int drumPos[]=new int[4];
     //因为鼓的位置有自定义，所以这里只是创建了变量
-    private static int DRUMKEY[]={0,44,74,118,148,192};
+    private static int DRUMKEY[]={0, 46, 85, 120, 175};
     private DrumAcceleration Drum;
 
     private BaseLoaderCallback mLoaderCallback=new BaseLoaderCallback(this) {
@@ -82,7 +81,6 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.drum_play_interface);
-//        iv = (ImageView) findViewById(R.id.instrument);
         initPlay();
 
         mOpenCvCameraView=(CameraBridgeViewBase)findViewById(R.id.view2);
@@ -105,7 +103,6 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
 
     @Override
     public void onCameraViewStarted(int width, int height) {
-        mGray=new Mat();
         mRgba=new Mat();
         initPlay();
     }
@@ -154,7 +151,6 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
 
     @Override
     public void onCameraViewStopped() {
-        mGray.release();
         mRgba.release();
     }
 
@@ -204,7 +200,11 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
             else{
                 play=true;
             }
-            if (play) playDrum(temp[0],temp[1],temp[0]);
+            if (play){
+                //因为有一个对应关系，所以这里的temp要处理一个映射
+                temp[0]=drumPos[temp[0]];
+                playDrum(temp[0],temp[1],temp[0]);
+            }
         }
         return mRgba;
     }

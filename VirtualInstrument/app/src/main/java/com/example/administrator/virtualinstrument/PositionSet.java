@@ -33,27 +33,19 @@ public class PositionSet extends AppCompatActivity implements View.OnClickListen
     private ImageView circle[] = new ImageView[4];
     private Bitmap drumBitmap[] = new Bitmap[4];
     private Bitmap circleBitmap[] = new Bitmap[4];
-    private static final int DRUMKEY[] = {0, 46, 85, 120, 175};
-    private DrumAcceleration Drum;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.positionset_interface);
-//        iv = (ImageView) findViewById(R.id.instrument);
         initPlay();
-
-
-        //这里的接收应该要改,就先用固定的了
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         color = bundle.getInt("color", 0);
-        Drum = new DrumAcceleration(DRUMKEY, 25, 12, 70);
 
     }
 
