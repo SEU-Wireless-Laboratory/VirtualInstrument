@@ -255,6 +255,9 @@ public class DrumPlay extends Activity implements CameraBridgeViewBase.CvCameraV
     public boolean onKeyDown(int keyCode,KeyEvent event){
         if(keyCode==KeyEvent.KEYCODE_BACK){
             Intent intent1=new Intent();
+            Bundle bundle=new Bundle();
+            bundle.putInt("color",color);
+            intent1.putExtras(bundle);
             intent1.setClass(DrumPlay.this, ChoiceInterface.class);
             DrumPlay.this.startActivity(intent1);
             DrumPlay.this.finish();
