@@ -108,6 +108,9 @@ public class PositionSet extends AppCompatActivity implements View.OnClickListen
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent1 = new Intent();
+            Bundle bundle=new Bundle();
+            bundle.putInt("color",color);
+            intent1.putExtras(bundle);
             intent1.setClass(PositionSet.this, ChoiceInterface.class);
             PositionSet.this.startActivity(intent1);
             PositionSet.this.finish();
