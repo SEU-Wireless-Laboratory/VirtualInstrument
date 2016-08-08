@@ -189,6 +189,9 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     public boolean onKeyDown(int keyCode,KeyEvent event){
         if(keyCode==KeyEvent.KEYCODE_BACK){
             Intent intent1=new Intent();
+            Bundle bundle=new Bundle();
+            bundle.putInt("color",color);
+            intent1.putExtras(bundle);
             intent1.setClass(PianoPlay.this, ChoiceInterface.class);
             PianoPlay.this.startActivity(intent1);
             PianoPlay.this.finish();
