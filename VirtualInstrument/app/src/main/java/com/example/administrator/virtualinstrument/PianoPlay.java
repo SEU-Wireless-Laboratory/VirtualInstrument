@@ -139,19 +139,8 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         int pointXY[]=DetectionBasedTracker.returnXYCoordinate(mRgba);
         Imgproc.cvtColor(mRgba,mRgba,Imgproc.COLOR_HSV2BGR);
         for(int i=0;i<pointXY.length;i=i+2) {
-            Point topLeft = new Point(pointXY[i], pointXY[i + 1]);
-            fingerTip = new Point();
-            ////////////////////////////////////////
-            //特别注意这里直接变成了从手机倒放的左上角的坐标
-            fingerTip.x = topLeft.x;
-            fingerTip.y = topLeft.y;
-            //////////////////////////////////////////
-
-            //Imgproc.circle(mFlipRgba, topLeft, 10, FINGER_RECT_COLOR);
-            //因为弹钢琴界面显示的是图片，所以不需要这一句话了
-            Log.i(TAG, fingerTip.x + "," + (fingerTip.y));
-
-            int temp[]=Piano.setXY((int)fingerTip.x,(int)fingerTip.y);
+            Log.i(TAG, pointXY[i] + "," + pointXY[i + 1]);
+            int temp[]=Piano.setXY((int)pointXY[i],(int)pointXY[i + 1]);
             if(temp[0] <0){
                 play=false;
             }
