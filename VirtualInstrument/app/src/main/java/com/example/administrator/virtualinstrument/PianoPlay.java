@@ -50,7 +50,6 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     protected static final int KEY[]={0,28,46,63,85,103,120,141,175};
     private boolean play = false ;
 
-
     private BaseLoaderCallback mLoaderCallback=new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -135,7 +134,6 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         Imgproc.cvtColor(mRgba, mRgba, Imgproc.COLOR_BGRA2RGB);//从RGBA转到RGB
         Imgproc.cvtColor(mRgba,mRgba,Imgproc.COLOR_RGB2HSV);//从RGB转到HSV
         Core.flip(mRgba,mRgba,1);//最后的1表示水平翻转，0表示垂直翻转
-        //DetectionBasedTracker.ChangeColor(color);
         int pointXY[]=DetectionBasedTracker.returnXYCoordinate(mRgba);
         Imgproc.cvtColor(mRgba,mRgba,Imgproc.COLOR_HSV2BGR);
         for(int i=0;i<pointXY.length;i=i+2) {
@@ -153,27 +151,28 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
     }
 
     private void initPlay(){
-        Log.i(TAG, "playing piano");
-
-        iv[0] = (ImageView) findViewById(R.id.instrument);
-        iv[3]=(ImageView) findViewById(R.id.a);
-        iv[2]=(ImageView) findViewById(R.id.b);
-        iv[1]=(ImageView) findViewById(R.id.c);
-        iv[7]=(ImageView) findViewById(R.id.d);
-        iv[6]=(ImageView) findViewById(R.id.e);
-        iv[5]=(ImageView) findViewById(R.id.f);
-        iv[4]=(ImageView) findViewById(R.id.g);
-        iv[8]=(ImageView) findViewById(R.id.doo);
-        changeToBitmap();
-        iv[0].setImageResource(R.drawable.xylplay);
-        iv[1].setVisibility(View.INVISIBLE);
-        iv[2].setVisibility(View.INVISIBLE);
-        iv[3].setVisibility(View.INVISIBLE);
-        iv[4].setVisibility(View.INVISIBLE);
-        iv[5].setVisibility(View.INVISIBLE);
-        iv[6].setVisibility(View.INVISIBLE);
-        iv[7].setVisibility(View.INVISIBLE);
-        iv[8].setVisibility(View.INVISIBLE);
+        //处理图像
+//        Log.i(TAG, "playing piano");
+//
+//        iv[0] = (ImageView) findViewById(R.id.instrument);
+//        iv[3]=(ImageView) findViewById(R.id.a);
+//        iv[2]=(ImageView) findViewById(R.id.b);
+//        iv[1]=(ImageView) findViewById(R.id.c);
+//        iv[7]=(ImageView) findViewById(R.id.d);
+//        iv[6]=(ImageView) findViewById(R.id.e);
+//        iv[5]=(ImageView) findViewById(R.id.f);
+//        iv[4]=(ImageView) findViewById(R.id.g);
+//        iv[8]=(ImageView) findViewById(R.id.doo);
+//        changeToBitmap();
+//        iv[0].setImageResource(R.drawable.xylplay);
+//        iv[1].setVisibility(View.INVISIBLE);
+//        iv[2].setVisibility(View.INVISIBLE);
+//        iv[3].setVisibility(View.INVISIBLE);
+//        iv[4].setVisibility(View.INVISIBLE);
+//        iv[5].setVisibility(View.INVISIBLE);
+//        iv[6].setVisibility(View.INVISIBLE);
+//        iv[7].setVisibility(View.INVISIBLE);
+//        iv[8].setVisibility(View.INVISIBLE);
     }
     public boolean onKeyDown(int keyCode,KeyEvent event){
         if(keyCode==KeyEvent.KEYCODE_BACK){
@@ -214,35 +213,34 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         iv[7].setImageBitmap(bitmap7);
         iv[8].setImageBitmap(bitmap8);
     }
-    protected Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            iv[msg.what].setVisibility(View.VISIBLE);
-            if(msg.what>0&&msg.what<9) {
-                switch (msg.what) {
-                    default:
-//                        iva.setVisibility(View.VISIBLE);
-                        iv[0].setImageBitmap(bitmap);
-                        break;
-                }
-            }
-        }
-    };
+//    protected Handler mHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            iv[msg.what].setVisibility(View.VISIBLE);
+//            if(msg.what>0&&msg.what<9) {
+//                switch (msg.what) {
+//                    default:
+//                        iv[0].setImageBitmap(bitmap);
+//                        break;
+//                }
+//            }
+//        }
+//    };
 
     private void playPiano(final int key,int tone){
-        Message msg=new Message();
-        msg.what=8-key;
+//        Message msg=new Message();
+//        msg.what=8-key;
         playMusic(key, tone);
-        mHandler.sendMessageAtFrontOfQueue(msg);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if((8-key)!=0) {
-                    iv[8-key].setVisibility(View.INVISIBLE);
-                }
-
-            }
-        },1500);
+//        mHandler.sendMessageAtFrontOfQueue(msg);
+//        mHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if((8-key)!=0) {
+//                    iv[8-key].setVisibility(View.INVISIBLE);
+//                }
+//
+//            }
+//        },1500);
     }
 
     //升八度或者降八度
