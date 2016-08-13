@@ -178,12 +178,12 @@
 //        val = 150;///明度
 //    }else if(color == 2){
 //        LOGD("Change color to Red");
-//        h_region =  10;
+//        h_region =  25;
 //        s_region = 102;
-//        v_region = 80;
-//        hue = 134 ;  //调
+//        v_region = 112;
+//        hue = 145 ;  //调
 //        saturation = 188;///色饱和度
-//        val = 150;///明度
+//        val = 195;///明度
 //    }else if(color == 0){
 //        LOGD("Change color to Purple");
 //        h_region = 15;//30
