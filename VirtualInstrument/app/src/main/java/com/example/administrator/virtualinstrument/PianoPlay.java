@@ -29,6 +29,7 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.InputStream;
@@ -139,6 +140,8 @@ public class PianoPlay extends Activity implements CameraBridgeViewBase.CvCamera
         for(int i=0;i<pointXY.length;i=i+2) {
             Log.i(TAG, pointXY[i] + "," + pointXY[i + 1]);
             int temp[]=Piano.setXY((int)pointXY[i],(int)pointXY[i + 1]);
+            Point topLeft = new Point(pointXY[i], pointXY[i + 1]);
+            Imgproc.circle(mRgba, topLeft, 10, new Scalar(0, 255, 0, 255));
             if(temp[0] <0){
                 play=false;
             }
