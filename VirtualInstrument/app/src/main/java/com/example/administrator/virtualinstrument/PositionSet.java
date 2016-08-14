@@ -119,40 +119,28 @@ public class PositionSet extends AppCompatActivity implements View.OnClickListen
         switch (view.getId()){
             case R.id.drum11:
                 drum[0].setImageBitmap(drumBitmap[i]);
-//                drum[0].setBackgroundColor(Color.RED);
-//                drum[0].setImageBitmap();
-//                circle[i].setBackgroundColor(Color.TRANSPARENT);
+                drum[0].setClickable(false);
                 circle[i].setVisibility(View.INVISIBLE);
                 drumPosition[i++]=0;
-//                circle[i].setBackgroundColor(Color.RED);
                 break;
             case R.id.drum12:
                 drum[1].setImageBitmap(drumBitmap[i]);
-//                drum[1].setBackgroundColor(Color.RED);
-                //                drum[0].setImageBitmap();
-//                circle[i].setBackgroundColor(Color.TRANSPARENT);
+                drum[1].setClickable(false);
                 circle[i].setVisibility(View.INVISIBLE);
                 drumPosition[i++]=1;
 
                 break;
             case R.id.drum13:
                 drum[2].setImageBitmap(drumBitmap[i]);
-//                drum[2].setBackgroundColor(Color.RED);
-                //                drum[0].setImageBitmap();
-//                circle[i].setBackgroundColor(Color.TRANSPARENT);
+                drum[2].setClickable(false);
                 circle[i].setVisibility(View.INVISIBLE);
                 drumPosition[i++]=2;
-//                circle[i].setBackgroundColor(Color.RED);
                 break;
             case R.id.drum14:
                 drum[3].setImageBitmap(drumBitmap[i]);
-//                drum[3].setBackgroundColor(Color.RED);
-                //                drum[0].setImageBitmap();
-//                circle[i].setBackgroundColor(Color.TRANSPARENT);
+                drum[3].setClickable(false);
                 circle[i].setVisibility(View.INVISIBLE);
                 drumPosition[i++]=3;
-
-//                circle[i].setBackgroundColor(Color.RED);
                 break;
         }
         if(i==4){
